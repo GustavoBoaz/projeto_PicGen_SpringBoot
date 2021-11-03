@@ -1,5 +1,7 @@
 package com.payboaz.App.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +17,27 @@ import com.payboaz.App.models.UserModel;
  */
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Long> {
+
+	/**
+	 * Method used to search by token
+	 * 
+	 * @param token
+	 * @return Optional<UserModel>
+	 * @author JULIA SOBRAL
+	 * @since 1.0
+	 * 
+	 */
+	Optional<UserModel> findByToken(String token);
+
+	/**
+	 * Method used to search by email
+	 * 
+	 * @param email
+	 * @return Optional<UserModel>
+	 * @author JULIA SOBRAL
+	 * @since 1.0
+	 * 
+	 */
+	Optional<UserModel> findByEmail(String email);
 
 }
