@@ -9,38 +9,51 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.payboaz.App.utils.PayStatus;
+import com.payboaz.App.utils.StatusPayment;
 
 /**
- * Classe Model que representa uma entidade no banco de dados com os campos
- * abaixo:
+ * Order base abstraction.abstraction.This class is a class that will
+ * represent a table in the system. The columns is:
  * 
  * <p>
- * - idOrder: Utilizado como chave primaria da tabela
+ * - idOrder: Represents order id column. This column is automatically generated
+ * and AUTO_INCREMET;
  * </p>
  * <p>
- * - requestDate: Coluna data da requisição
+ * - requestDate: Represents request date column. String format "yyyy-MM-dd".
+ * This column is automatically generated;
  * </p>
  * <p>
- * - deadlineDate: Coluna data limite para finalizar pagamento
+ * - deadlineDate: Represents deadline date column. String format "yyyy-MM-dd".
+ * This column is automatically generated;
  * </p>
  * <p>
- * - statusPay: Coluna para status do pagamento PENDENTE PAGO CANCELADO
+ * - statusPay: Represents pay status column. ENUM StatusPayment format
+ * {PENDING, CANCELED, PAID}. This column is automatically generated witch value
+ * PENDING;
  * </p>
  * <p>
- * - value: Coluna valor para pagamento
+ * - value: Represents value column. Float NOT NULL;
  * </p>
  * <p>
- * - emailBuyer: Coluna email do pagador
+ * - emailBuyer: Represents buyer email column. String NOT NULL format
+ * {email@domain.com};
  * </p>
  * <p>
- * - documentBuyer: Coluna documeto CPF do pagador
+ * - documentBuyer: Represents buyer document column. String NOT NULL format
+ * {XXX.XXX.XXX-XX};
  * </p>
  * 
  * @author Bart Neto
  * @since 1.0
+ * @see UserModel
  *
  */
 @Entity
@@ -50,11 +63,11 @@ public class OrderModel {
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long idOrder;
 	private @JsonFormat(pattern = "yyyy-MM-dd") LocalDate requestDate = LocalDate.now();
 	private @JsonFormat(pattern = "yyyy-MM-dd") LocalDate deadlineDate = requestDate.plusDays(1);
-	private @Enumerated(EnumType.STRING) PayStatus statusPay = PayStatus.PENDENTE;
+	private @Enumerated(EnumType.STRING) StatusPayment statusPayment = StatusPayment.PENDENTE;
 
-	private Float value;
-	private String emailBuyer;
-	private String documentBuyer;
+	private @NotNull Float value;
+	private @NotBlank @Email String emailBuyer;
+	private @NotBlank @CPF String documentBuyer;
 
 	public Long getIdOrder() {
 		return idOrder;
@@ -80,12 +93,12 @@ public class OrderModel {
 		this.deadlineDate = deadlineDate;
 	}
 
-	public PayStatus getStatusPay() {
-		return statusPay;
+	public StatusPayment getStatusPayment() {
+		return statusPayment;
 	}
 
-	public void setStatusPay(PayStatus statusPay) {
-		this.statusPay = statusPay;
+	public void setStatusPayment(StatusPayment statusPayment) {
+		this.statusPayment = statusPayment;
 	}
 
 	public Float getValue() {

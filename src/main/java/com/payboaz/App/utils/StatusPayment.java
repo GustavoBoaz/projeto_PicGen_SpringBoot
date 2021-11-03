@@ -1,5 +1,5 @@
 package com.payboaz.App.utils;
 
-public enum PayStatus {
+public enum StatusPayment {
 	PENDENTE,CANCELADO,PAGO
 }
