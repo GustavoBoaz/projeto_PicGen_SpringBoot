@@ -5,17 +5,48 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
+/**
+ * Admin User account based abstraction.This class is a class that will
+ * represent a table in the system. The columns is:
+ * 
+ * <p>
+ * - idUser: represents user id column. This column is automatically generated
+ * and AUTO_INCREMET;
+ * </p>
+ * <p>
+ * - name: represents user name column. String NOT NULL;
+ * </p>
+ * <p>
+ * - email: represents user email column. String NOT NULL;
+ * </p>
+ * <p>
+ * - password: represents user password column. String NOT NULL;
+ * </p>
+ * <p>
+ * - token: represents user token column. String NOT NULL;
+ * </p>
+ * <p>
+ * - wallet: represents user wallet column Float NULL;
+ * </p>
+ * 
+ * @author Boaz
+ * @since 1.0
+ * @see OrderModel
+ * 
+ */
 @Entity
 @Table(name = "tb_users")
 public class UserModel {
 
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long idUser;
-	private String name;
-	private String email;
-	private String password;
-	private String token;
-	private Float wallet;
+	private @NotBlank String name;
+	private @NotBlank @Email String email;
+	private @NotBlank String password;
+	private @NotBlank String token;
+	private @SuppressWarnings("deprecation") Float wallet = new Float(0.00);
 
 	public Long getIdUser() {
 		return idUser;
