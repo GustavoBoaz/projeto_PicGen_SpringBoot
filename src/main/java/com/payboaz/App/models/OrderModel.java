@@ -8,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -52,7 +54,8 @@ import com.payboaz.App.utils.StatusPayment;
  * </p>
  * 
  * @author Bart Neto
- * @since 1.0
+ * @author Mariana
+ * @since 1.1
  * @see UserModel
  *
  */
@@ -69,6 +72,10 @@ public class OrderModel {
 	private @NotBlank @Email String emailBuyer;
 	private @NotBlank @CPF String documentBuyer;
 
+	@ManyToOne
+	@JoinColumn(name = "fk_sponsor")
+	private UserModel sponsor;
+	
 	public Long getIdOrder() {
 		return idOrder;
 	}

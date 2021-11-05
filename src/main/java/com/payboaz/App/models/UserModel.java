@@ -1,9 +1,14 @@
 package com.payboaz.App.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -33,7 +38,8 @@ import javax.validation.constraints.NotBlank;
  * </p>
  * 
  * @author Boaz
- * @since 1.0
+ * @author Mariana
+ * @since 1.1
  * @see OrderModel
  * 
  */
@@ -48,6 +54,9 @@ public class UserModel {
 	private @NotBlank String token;
 	private @SuppressWarnings("deprecation") Float wallet = new Float(0.00);
 
+	@OneToMany(mappedBy = "sponsor", cascade = CascadeType.REMOVE)
+	private List<OrderModel> myOrders = new ArrayList<>();
+	
 	public Long getIdUser() {
 		return idUser;
 	}
