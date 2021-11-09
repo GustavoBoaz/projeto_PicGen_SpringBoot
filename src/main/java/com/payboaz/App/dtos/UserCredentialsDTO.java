@@ -1,9 +1,36 @@
 package com.payboaz.App.dtos;
 
 /**
+ * Mirror class for outputting data. Your impersonation should be used to return
+ * admin user credentials.
+ * 
+ * Fields:
+ *
+ * <p>
+ * - idUser: Represents user id;
+ * </p>
+ * <p>
+ * - name: Represents user name;
+ * </p>
+ * <p>
+ * - email: Represents user email;
+ * </p>
+ * <p>
+ * - password: Represents user password;
+ * </p>
+ * <p>
+ * - token: Represents user token;
+ * </p>
+ * <p>
+ * - authorizationBasic: Represents user Basic token;
+ * </p>
  * 
  * @author JULIA SOBRAL
+ * @author BOAZ
  * @since 1.0
+ * @see UserLoginDTO
+ * @see UserRegistrationDTO
+ * @see UserUpdateDTO
  *
  */
 public class UserCredentialsDTO {

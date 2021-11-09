@@ -5,9 +5,24 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 /**
+ * Mirror class for data entry. Your representation must be used to request
+ * credentials from the administrator user;
+ * 
+ * Fields:
+ * 
+ * <p>
+ * - email: String type email;
+ * </p>
+ * <p>
+ * - password: String in between 4 and 15 characteres;
+ * </p>
  * 
  * @author JULIA SOBRAL
+ * @author BOAZ
  * @since 1.0
+ * @see UserCredentialsDTO
+ * @see UserRegistrationDTO
+ * @see UserUpdateDTO
  *
  */
 public class UserLoginDTO {

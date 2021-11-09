@@ -5,9 +5,27 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 /**
+ * Mirror class for data entry. Your representation must be used to register a
+ * new administrator user to the system.
+ * 
+ * Fields:
+ * 
+ * <p>
+ * - name: String in between 4 and 50 characteres;
+ * </p>
+ * <p>
+ * - email: String type email;
+ * </p>
+ * <p>
+ * - password: String in between 4 and 100 characteres;
+ * </p>
  * 
  * @author JULIA SOBRAL
+ * @author BOAZ
  * @since 1.0
+ * @see UserCredentialsDTO
+ * @see UserLoginDTO
+ * @see UserUpdateDTO
  *
  */
 public class UserRegistrationDTO {

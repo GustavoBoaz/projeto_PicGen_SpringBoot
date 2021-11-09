@@ -6,9 +6,34 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
+ * Mirror class for data entry. Your representation must be used to update a
+ * current administrator user to the system. A valid id and token must be
+ * passed.
+ * 
+ * Fields:
+ * 
+ * <p>
+ * - idUser: Long for validation;
+ * </p>
+ * <p>
+ * - token: String for validation;
+ * </p>
+ * <p>
+ * - name: String in between 4 and 50 characteres for update;
+ * </p>
+ * <p>
+ * - email: String type email for update;
+ * </p>
+ * <p>
+ * - password: String in between 4 and 100 characteres for update;
+ * </p>
  * 
  * @author JULIA SOBRAL
+ * @author BOAZ
  * @since 1.0
+ * @see UserCredentialsDTO
+ * @see UserLoginDTO
+ * @see UserRegistrationDTO
  *
  */
 public class UserUpdateDTO {
