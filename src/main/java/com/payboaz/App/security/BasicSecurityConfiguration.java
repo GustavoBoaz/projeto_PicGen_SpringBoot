@@ -1,5 +1,6 @@
 package com.payboaz.App.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter {
+	
+	private @Autowired UserDetailsServiceImplements service;
 
 	@Bean
 	public PasswordEncoder senhaEncoder() {
@@ -23,6 +26,7 @@ public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/api/v1/user/save").permitAll()
+				.antMatchers(HttpMethod.PUT, "/api/v1/user/credentials").permitAll()
 			.anyRequest().authenticated()
 			.and().httpBasic()
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -33,6 +37,8 @@ public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
+		auth.userDetailsService(service);
+		
 		auth.inMemoryAuthentication().withUser("boaz").password(senhaEncoder().encode("boaz"))
 				.authorities("ROLE_ADMIN");
 	}

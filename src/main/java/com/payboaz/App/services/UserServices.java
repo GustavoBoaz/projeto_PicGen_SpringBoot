@@ -13,6 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.payboaz.App.dtos.UserCredentialsDTO;
+import com.payboaz.App.dtos.UserLoginDTO;
 import com.payboaz.App.dtos.UserRegistrationDTO;
 import com.payboaz.App.models.UserModel;
 import com.payboaz.App.repositories.UserRepository;
@@ -54,6 +56,23 @@ public class UserServices {
 		byte[] structureBase64 = Base64.encodeBase64(structure.getBytes(Charset.forName("US-ASCII")));
 		return new String(structureBase64);
 	}
+	
+	/**
+	 * Private static method, used to generate Basic token in Base64 format.
+	 * 
+	 * @param email,    String format.
+	 * @param password, String format.
+	 * @return String
+	 * @author Boaz
+	 * @since 1.0
+	 * @see Base64
+	 * 
+	 */
+	private static String generatorBasicToken(String email, String password) {
+		String structure = email + ":" + password;
+		byte[] structureBase64 = Base64.encodeBase64(structure.getBytes(Charset.forName("US-ASCII")));
+		return "Basic " + new String(structureBase64);
+	}
 
 	/**
 	 * Public method used to register a user in the system's database. This method
@@ -81,6 +100,60 @@ public class UserServices {
 			return ResponseEntity.status(201).body(repository.save(user));
 		}
 
+	}
+
+	/**
+	 * Public method used to get credentials from an administrator user in the
+	 * system database. This method returns a BAD_REQUEST if intent is provided with
+	 * invalid email or password. If you don't hear invalid email or password, the
+	 * system returns CREATED status with UserCredentialsDTO object filled in in the
+	 * response.
+	 * 
+	 * @param userAuth, UserLoginDTO object.
+	 * @return ResponseEntity<UserCredentialsDTO>
+	 * @author BOAZ
+	 * @since 1.0
+	 * 
+	 */
+	public ResponseEntity<UserCredentialsDTO> getCredentials(@Valid UserLoginDTO userAuth) {
+		return repository.findByEmail(userAuth.getEmail()).map(resp -> {
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			
+			if (encoder.matches(userAuth.getPassword(), resp.getPassword())) {
+				
+				UserCredentialsDTO credentials = new UserCredentialsDTO();
+				
+				credentials.setIdUser(resp.getIdUser());
+				credentials.setName(resp.getName());
+				credentials.setEmail(resp.getEmail());
+				credentials.setPassword(resp.getPassword());
+				credentials.setToken(resp.getToken());
+				credentials.setAuthorizationBasic(generatorBasicToken(userAuth.getEmail(), userAuth.getPassword()));
+				
+				return ResponseEntity.status(201).body(credentials);
+			} else {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Senha incorreta!");
+			}
+		}).orElseGet(() -> {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email não existe!");
+		});
+	}
+
+	/**
+	 * Public method used to retrieve admin user profile in the system.
+	 * 
+	 * @param token, String format
+	 * @return ResponseEntity<UserModel>
+	 * @author Boaz
+	 * @since 1.0
+	 * 
+	 */
+	public ResponseEntity<UserModel> getProfile(String token) {
+		return repository.findByToken(token).map(resp -> {
+			return ResponseEntity.ok(resp);
+		}).orElseThrow(() -> {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token invalido!");
+		});
 	}
 
 }
