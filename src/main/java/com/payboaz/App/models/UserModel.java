@@ -104,5 +104,13 @@ public class UserModel {
 	public void setWallet(Float wallet) {
 		this.wallet = wallet;
 	}
+	
+	public List<OrderModel> getMyOrders() {
+	    return myOrders;
+	}
+
+	public void setMyOrders(List<OrderModel> myOrders) {
+	    this.myOrders = myOrders;
+	}
 
 }
