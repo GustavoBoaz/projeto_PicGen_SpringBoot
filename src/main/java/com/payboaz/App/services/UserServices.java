@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.payboaz.App.dtos.UserCredentialsDTO;
 import com.payboaz.App.dtos.UserLoginDTO;
 import com.payboaz.App.dtos.UserRegistrationDTO;
+import com.payboaz.App.dtos.UserUpdateDTO;
 import com.payboaz.App.models.UserModel;
 import com.payboaz.App.repositories.UserRepository;
 
@@ -23,6 +24,8 @@ import com.payboaz.App.repositories.UserRepository;
 public class UserServices {
 
 	private @Autowired UserRepository repository;
+	private UserModel user;
+	private UserCredentialsDTO credentials;
 
 	/**
 	 * Private static method, used to encrypt with BCryptPasswordEncoder format a
@@ -153,6 +156,45 @@ public class UserServices {
 			return ResponseEntity.ok(resp);
 		}).orElseThrow(() -> {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token invalido!");
+		});
+	}
+	
+	/**
+	 * Public method used to update user admin credentials. This method returns a
+	 * BAD_REQUEST if idUser or Token are invalid or do not belong to the same user
+	 * admin. Otherwise it returns a UserCredentialsDTO with CREATED status and
+	 * updates the fields: name, email and password.
+	 * 
+	 * @param userUpdate, UserUpdateDTO object.
+	 * @return ResponseEntity<UserCredentialsDTO>
+	 * @author Boaz
+	 * @since 1.0
+	 * 
+	 */
+	public ResponseEntity<UserCredentialsDTO> putCredentials(@Valid UserUpdateDTO userUpdate) {
+		Optional<UserModel> optional = repository.findByToken(userUpdate.getToken());
+		return repository.findById(userUpdate.getIdUser()).map(resp -> {
+			if (optional.isPresent() && optional.get().getToken().equals(resp.getToken())) {
+				resp.setName(userUpdate.getName());
+				resp.setEmail(userUpdate.getEmail());
+				resp.setPassword(encryptPassword(userUpdate.getPassword()));
+				resp.setToken(generatorToken(userUpdate.getEmail(), userUpdate.getPassword()));
+
+				user = repository.save(resp);
+				credentials = new UserCredentialsDTO();
+				credentials.setIdUser(user.getIdUser());
+				credentials.setName(user.getName());
+				credentials.setEmail(user.getEmail());
+				credentials.setPassword(user.getPassword());
+				credentials.setToken(user.getToken());
+				credentials.setAuthorizationBasic(generatorBasicToken(userUpdate.getEmail(), userUpdate.getPassword()));
+
+				return ResponseEntity.status(201).body(credentials);
+			} else {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token invalido!");
+			}
+		}).orElseThrow(() -> {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id invalido!");
 		});
 	}
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.payboaz.App.dtos.UserCredentialsDTO;
 import com.payboaz.App.dtos.UserLoginDTO;
 import com.payboaz.App.dtos.UserRegistrationDTO;
+import com.payboaz.App.dtos.UserUpdateDTO;
 import com.payboaz.App.models.UserModel;
 import com.payboaz.App.services.UserServices;
 
@@ -32,6 +33,11 @@ public class UserController {
 	@PutMapping("/credentials")
 	public ResponseEntity<UserCredentialsDTO> seeCredentials(@Valid @RequestBody UserLoginDTO userAuth){
 		return services.getCredentials(userAuth);
+	}
+	
+	@PutMapping("/credentials/update")
+	public ResponseEntity<UserCredentialsDTO> putCredentials(@Valid @RequestBody UserUpdateDTO userUpdate){
+		return services.putCredentials(userUpdate);
 	}
 	
 	@GetMapping("/{token}")
