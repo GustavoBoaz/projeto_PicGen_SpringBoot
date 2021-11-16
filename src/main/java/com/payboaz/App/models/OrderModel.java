@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.payboaz.App.utils.StatusPayment;
 
 /**
@@ -74,6 +75,7 @@ public class OrderModel {
 
 	@ManyToOne
 	@JoinColumn(name = "fk_sponsor")
+	@JsonIgnoreProperties({ "myOrders", "idUser", "password", "token", "wallet" })
 	private UserModel sponsor;
 	
 	public OrderModel() {

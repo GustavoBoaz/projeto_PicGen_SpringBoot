@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Admin User account based abstraction.This class is a class that will
  * represent a table in the system. The columns is:
@@ -55,6 +57,7 @@ public class UserModel {
 	private @SuppressWarnings("deprecation") Float wallet = new Float(0.00);
 
 	@OneToMany(mappedBy = "sponsor", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({ "sponsor" })
 	private List<OrderModel> myOrders = new ArrayList<>();
 	
 	public Long getIdUser() {
