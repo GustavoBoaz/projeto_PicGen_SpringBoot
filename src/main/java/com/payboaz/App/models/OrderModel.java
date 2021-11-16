@@ -21,8 +21,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.payboaz.App.utils.StatusPayment;
 
 /**
- * Order base abstraction.abstraction.This class is a class that will
- * represent a table in the system. The columns is:
+ * Order base abstraction.abstraction.This class is a class that will represent
+ * a table in the system. The columns is:
  * 
  * <p>
  * - idOrder: Represents order id column. This column is automatically generated
@@ -75,7 +75,7 @@ public class OrderModel {
 	@ManyToOne
 	@JoinColumn(name = "fk_sponsor")
 	private UserModel sponsor;
-	
+
 	public Long getIdOrder() {
 		return idOrder;
 	}
@@ -130,6 +130,14 @@ public class OrderModel {
 
 	public void setDocumentBuyer(String documentBuyer) {
 		this.documentBuyer = documentBuyer;
+	}
+
+	public UserModel getSponsor() {
+		return sponsor;
+	}
+
+	public void setSponsor(UserModel sponsor) {
+		this.sponsor = sponsor;
 	}
 
 }
