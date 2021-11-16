@@ -75,6 +75,18 @@ public class OrderModel {
 	@ManyToOne
 	@JoinColumn(name = "fk_sponsor")
 	private UserModel sponsor;
+	
+	public OrderModel() {
+		super();
+	}
+
+	public OrderModel(Float value, String emailBuyer, String documentBuyer, UserModel sponsor) {
+		super();
+		this.value = value;
+		this.emailBuyer = emailBuyer;
+		this.documentBuyer = documentBuyer;
+		this.sponsor = sponsor;
+	}
 
 	public Long getIdOrder() {
 		return idOrder;
