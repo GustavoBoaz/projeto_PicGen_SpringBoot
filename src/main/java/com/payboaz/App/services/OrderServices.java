@@ -1,5 +1,7 @@
 package com.payboaz.App.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.payboaz.App.dtos.OrderRegistrationDTO;
 import com.payboaz.App.dtos.OrderPaymentDTO;
 import com.payboaz.App.models.OrderModel;
+import com.payboaz.App.models.UserModel;
 import com.payboaz.App.repositories.OrderRepository;
 import com.payboaz.App.repositories.UserRepository;
 import com.payboaz.App.utils.QRFactory;
@@ -79,4 +82,40 @@ public class OrderServices {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token invalido!");
 		});
 	}
+	
+	/**
+	 * Public method responsible for creating a new payment order in the system.
+	 * This method returns BAD_REQUEST when token and IdOrder passed as parameter
+	 * is invalid. Otherwise, the method returns status CREATED an 
+	 * ResponseEntity<OrderPaymentDTO>.
+	 * 
+	 * @param token,    String format.
+	 * @param idOrder,	Long format.
+	 * @return Optional<OrderPaymentDTO>
+	 * @author Boaz
+	 * @since 1.0
+	 * 
+	 */
+	public ResponseEntity<OrderPaymentDTO> getPaymentOrder(String token, Long idOrder) {
+		Optional<UserModel> optional = repositoryUser.findByToken(token);
+		return repositoryOrder.findById(idOrder).map(resp -> {
+
+			if (optional.isPresent() && resp.getSponsor().getEmail() == optional.get().getEmail()) {
+				try {
+					objectDTO = new OrderPaymentDTO(
+							resp,
+							urlPayment + token + "/" + resp.getIdOrder(),
+							getQRCodeBase64(token, resp.getIdOrder()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return ResponseEntity.status(200).body(objectDTO);
+			} else {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token invalido!");
+			}
+		}).orElseThrow(() -> {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ordem não existe!");
+		});
+	}
+	
 }
