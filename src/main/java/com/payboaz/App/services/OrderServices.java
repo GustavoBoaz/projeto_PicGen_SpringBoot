@@ -118,4 +118,32 @@ public class OrderServices {
 		});
 	}
 	
+	/**
+	 * Public method responsible for deleting an order in the system. The method
+	 * returns BAD_REQUEST if token or idOrder does not exist or does not belong
+	 * to the same user. Otherwise delete the order and return status OK.
+	 * 
+	 * @param token
+	 * @param idOrder
+	 * @return ResponseEntity
+	 * @author Boaz
+	 * @since 1.0
+	 * 
+	 */
+	public ResponseEntity<Object> deletePaymentOrder(String token, Long idOrder) {
+		Optional<UserModel> optional = repositoryUser.findByToken(token);
+		return repositoryOrder.findById(idOrder).map(resp -> {
+
+			if (optional.isPresent() && resp.getSponsor().getEmail().equals(optional.get().getEmail()) ) {
+				repositoryOrder.deleteById(idOrder);
+				
+				return ResponseEntity.status(200).build();
+			} else {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token invalido!");
+			}
+		}).orElseThrow(() -> {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ordem não existe!");
+		});
+	}
+	
 }
