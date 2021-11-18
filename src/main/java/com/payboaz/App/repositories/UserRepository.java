@@ -1,5 +1,6 @@
 package com.payboaz.App.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -39,5 +40,16 @@ public interface UserRepository extends JpaRepository<UserModel, Long> {
 	 * 
 	 */
 	Optional<UserModel> findByEmail(String email);
+	
+	/**
+	 * Method used to search by name
+	 * 
+	 * @param name
+	 * @return Optional<UserModel>
+	 * @author BOAZ
+	 * @since 1.0
+	 * 
+	 */
+	List<UserModel> findAllByNameContainingIgnoreCase(String name);
 
 }

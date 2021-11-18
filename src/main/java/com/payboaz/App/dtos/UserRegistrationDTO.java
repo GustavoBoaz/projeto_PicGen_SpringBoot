@@ -34,6 +34,17 @@ public class UserRegistrationDTO {
 	private @NotBlank(message = "Inserir 'email' valido") @Email String email;
 	private @NotBlank(message = "Inserir 'password' de 4 á 15 caracteres") @Size(min = 3, max = 15) String password;
 
+	public UserRegistrationDTO() {
+		
+	}
+	
+	public UserRegistrationDTO(String name, String email, String password) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+
 	public String getName() {
 		return name;
 	}

@@ -59,7 +59,19 @@ public class UserModel {
 	@OneToMany(mappedBy = "sponsor", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({ "sponsor" })
 	private List<OrderModel> myOrders = new ArrayList<>();
+
+	public UserModel() {
+		
+	}
 	
+	public UserModel(String name, String email, String password, String token) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.token = token;
+	}
+
 	public Long getIdUser() {
 		return idUser;
 	}
@@ -107,13 +119,13 @@ public class UserModel {
 	public void setWallet(Float wallet) {
 		this.wallet = wallet;
 	}
-	
+
 	public List<OrderModel> getMyOrders() {
-	    return myOrders;
+		return myOrders;
 	}
 
 	public void setMyOrders(List<OrderModel> myOrders) {
-	    this.myOrders = myOrders;
+		this.myOrders = myOrders;
 	}
 
 }
