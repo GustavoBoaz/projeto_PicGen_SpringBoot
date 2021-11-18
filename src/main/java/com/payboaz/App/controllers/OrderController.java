@@ -17,25 +17,43 @@ import com.payboaz.App.dtos.OrderPaymentDTO;
 import com.payboaz.App.dtos.OrderRegistrationDTO;
 import com.payboaz.App.services.OrderServices;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/api/v1/order")
+@Api(tags = "Order Controller API", description = "Order features")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class OrderController {
 	
 	private @Autowired OrderServices services;
 	
+	@ApiOperation(value = "New order")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 201, message = "New order created on the system."),
+			@ApiResponse(code = 400, message = "Request error, invalid token!") })
 	@PostMapping("/{token}")
 	public ResponseEntity<OrderPaymentDTO> newOrder(@PathVariable(value = "token") String token,
 			@Valid @RequestBody OrderRegistrationDTO newOrder) {
 		return services.newPaymentOrder(token, newOrder);
 	}
 	
+	@ApiOperation(value = "Get order")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Order data!"),
+			@ApiResponse(code = 400, message = "Request error, invalid token or idOrder!") })
 	@GetMapping("/{token}/{id_order}")
 	public ResponseEntity<OrderPaymentDTO> getOrder(@PathVariable(value = "token") String token,
 			@PathVariable(value = "id_order") Long idOrder) {
 		return services.getPaymentOrder(token, idOrder);
 	}
 	
+	@ApiOperation(value = "Delete order")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Deleted order"),
+			@ApiResponse(code = 400, message = "Request error, invalid token or idOrder!") })
 	@DeleteMapping("/{token}/{id_order}")
 	public ResponseEntity<Object> deleteOrder(@PathVariable(value = "token") String token,
 			@PathVariable(value = "id_order") Long idOrder) {
