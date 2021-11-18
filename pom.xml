@@ -26,6 +26,12 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.github.kenglxn.qrgen</groupId>
 			<artifactId>javase</artifactId>
 			<version>2.6.0</version>
@@ -74,6 +80,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
