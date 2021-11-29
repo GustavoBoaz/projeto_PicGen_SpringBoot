@@ -12,7 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class AppApplication {
 	
-	@GetMapping
+	@GetMapping("/")
+	public ModelAndView index() {
+		ModelAndView model = new ModelAndView("index.html");
+		return model;
+	}
+	
+	@GetMapping("/api")
 	public ModelAndView swaggerUi() {
 		return new ModelAndView("redirect:/swagger-ui/");
 	}

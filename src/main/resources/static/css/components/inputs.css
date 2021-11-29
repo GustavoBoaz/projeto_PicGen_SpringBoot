@@ -1,0 +1,32 @@
+/* Input type text | password */
+input[type=text], input[type=password] ,input[type=email]{
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    border-bottom: 1px solid #7a00ff;
+    width: 70%;
+    height: 30px;
+
+    margin: 5px;
+
+    transition: all 900ms;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+    outline: none;
+    border-bottom: 1px solid #00ff7a;
+}
+
+
+/* Alter color placeholder */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: gray;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: gray;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: gray;
+  }

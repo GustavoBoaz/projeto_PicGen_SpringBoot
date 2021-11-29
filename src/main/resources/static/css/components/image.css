@@ -1,0 +1,36 @@
+.mini-img {
+    width: 32px;
+}
+
+.small-img {
+    width: 42px;
+}
+
+.medium-img {
+    width: 100px;
+}
+
+.regular-img {
+    width: 150px;
+}
+
+.large-img {
+    width: 200px;
+}
+
+.big-img {
+    width: 250px;
+}
+
+/* Border Radio */
+.rb-5 {
+    border-radius: 5px;
+}
+
+.rb-10 {
+    border-radius: 10px;
+}
+
+.rb-15 {
+    border-radius: 15px;
+}

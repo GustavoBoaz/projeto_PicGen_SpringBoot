@@ -1,0 +1,30 @@
+/*Back Primary-Positive-Negative color*/
+.bpc {background-color: #Ff7a00;}
+.bpo {background-color: #00ff7a;}
+.bne {background-color: #7a00ff;}
+.bbc {background-color: black;}
+.bwc {background-color: white;}
+.bpcf{background-color: #F9f0ed;}
+
+/*Text Primary-Positive-Negative color*/
+.tpc {color: #Ff7a00;}
+.tpo {color: #00ff7a;}
+.tne {color: #7a00ff;}
+.tbc {color: black;}
+.twc {color: white;}
+
+/*Text Colors*/
+.tgreen  {color: rgb(0, 255, 0);}
+.tblue   {color: rgb(0, 183, 255);}
+.tyellow {color: yellow;}
+.torange {color: orange;}
+.tred    {color: red;}
+.tpurple {color: purple;}
+
+/*Back Colors*/
+.bgreen  {background-color: rgb(0, 255, 0);}
+.bblue   {background-color: rgb(0, 183, 255);}
+.byellow {background-color: yellow;}
+.borange {background-color: orange;}
+.bred    {background-color: red;}
+.bpurple {background-color: purple;}

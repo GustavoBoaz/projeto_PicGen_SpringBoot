@@ -50,6 +50,15 @@ public class OrderController {
 		return services.getPaymentOrder(token, idOrder);
 	}
 	
+	@ApiOperation(value = "Get order by id")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Order data!"),
+			@ApiResponse(code = 400, message = "Request error, invalid idOrder!") })
+	@GetMapping("/{id_order}")
+	public ResponseEntity<OrderPaymentDTO> getOrderById(@PathVariable(value = "id_order") Long idOrder) {
+		return services.getPaymentOrderById(idOrder);
+	}
+	
 	@ApiOperation(value = "Delete order")
 	@ApiResponses(value = { 
 			@ApiResponse(code = 200, message = "Deleted order"),
