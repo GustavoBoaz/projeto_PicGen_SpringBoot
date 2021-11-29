@@ -51,7 +51,7 @@ self.addEventListener('fetch', function(event) {
   }
 });
 
-window.addEventListener('beforeinstallprompt', (event) => {
+self.addEventListener('beforeinstallprompt', (event) => {
   // Prevent the mini-infobar from appearing on mobile.
   event.preventDefault();
   console.log('👍', 'beforeinstallprompt', event);
@@ -80,7 +80,7 @@ butInstall.addEventListener('click', async () => {
   divInstall.classList.toggle('hidden', true);
 });
 
-window.addEventListener('appinstalled', (event) => {
+self.addEventListener('appinstalled', (event) => {
   console.log('👍', 'appinstalled', event);
   // Clear the deferredPrompt so it can be garbage collected
   window.deferredPrompt = null;
