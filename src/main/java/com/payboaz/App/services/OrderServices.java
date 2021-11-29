@@ -119,6 +119,36 @@ public class OrderServices {
 	}
 	
 	/**
+	 * Public method responsible for get a payment order in the system.
+	 * This method returns BAD_REQUEST when IdOrder passed as parameter
+	 * is invalid. Otherwise, the method returns status OK an 
+	 * ResponseEntity<OrderPaymentDTO>.
+	 * 
+	 * @param idOrder,	Long format.
+	 * @return Optional<OrderPaymentDTO>
+	 * @author Boaz
+	 * @since 1.0
+	 * 
+	 */
+	public ResponseEntity<OrderPaymentDTO> getPaymentOrderById(Long idOrder) {
+		return repositoryOrder.findById(idOrder).map(resp -> {
+
+				try {
+					objectDTO = new OrderPaymentDTO(
+							resp,
+							urlPayment + resp.getSponsor().getToken() + "/" + resp.getIdOrder(),
+							getQRCodeBase64(resp.getSponsor().getToken(), resp.getIdOrder()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return ResponseEntity.status(200).body(objectDTO);
+
+		}).orElseThrow(() -> {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ordem não existe!");
+		});
+	}
+	
+	/**
 	 * Public method responsible for deleting an order in the system. The method
 	 * returns BAD_REQUEST if token or idOrder does not exist or does not belong
 	 * to the same user. Otherwise delete the order and return status OK.
