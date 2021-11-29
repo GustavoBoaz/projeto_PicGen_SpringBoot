@@ -1,0 +1,45 @@
+/* Font project */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap');
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+/* Type fonts */
+.font-light-200 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 200;
+}
+
+.font-light-300 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 300;
+}
+
+.font-regular-400 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 400;
+}
+
+.font-semi-bold-600 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+}
+
+.font-bold-700 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+}
+
+.font-extra-bold-800 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 800;
+}
+
+.font-black-900 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 900;
+}

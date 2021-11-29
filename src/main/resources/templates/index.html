@@ -1,0 +1,55 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{fragments/f_index :: head('PicGen')}"></head>
+
+    <body>
+
+        <form id="form_search" class="rb-10">
+            <i class="fas fa-search large tbc"></i>
+            <input id="input_order" class="font-light-200 large tbc" type="text" placeholder="Search by order ID">
+        </form>
+
+        <form id="form_login" class="bpcf rb-10">
+            <img class="big-img" src="/img/assets/PicGen-1-sf.png" alt="logo">
+
+            <div id="alert_login"></div>
+
+            <input id="email_auth" class="font-semi-bold-600 tpc" type="email" placeholder="E-mail">
+            <input id="pass_auth" class="font-semi-bold-600 tpc" type="password" placeholder="Password">
+
+            <a id="btn_login" class="font-light-300 btn-t bpo twc medium disabled" style="width:75%; margin-top: 40px;">Log In</a>
+            <hr style="width:90%">
+            <a id="btn_register" class="font-light-200 btn-t bne twc medium" style="width:55%; margin-bottom: 20px;">Create new account</a>
+        </form>
+
+        <form id="form_register" method="POST" class="bpcf rb-10">
+            <img class="big-img" src="/img/assets/PicGen-1-sf.png" alt="logo">
+
+            <div id="alert_register"></div>
+
+            <input id="input_name" class="font-semi-bold-600 tpc" type="text" placeholder="Name">
+            <input id="input_email" class="font-semi-bold-600 tpc" type="email" placeholder="E-mail">
+            <input id="input_pass" class="font-semi-bold-600 tpc" type="password" placeholder="Password">
+
+            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: baseline; width: 70%; margin-bottom: 20px;  margin-top: 40px;">
+                <a id="btn_retunr_one" class="font-light-200 btn-ic bne twc medium tooltip-top" style="width: 20px;">
+                    <span class="bpc">
+                        <h6 class="font-light-200 twc">return</h6>
+                    </span>
+                    <i class="fas fa-angle-left"></i>
+                </a>
+                <a id="btn_create" class="font-light-300 btn-t bpo twc medium disabled" style="width:80%;">Create</a>
+            </div>
+        </form>
+
+        <div id="profile_user" style="display: none;">
+            <main th:replace="~{fragments/f_profile :: main()}">
+        </div>
+
+        <div id="qr_code"></div>
+
+        <footer th:replace="~{fragments/f_index :: footer()}">
+
+    </body>
+</html>

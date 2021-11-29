@@ -1,0 +1,155 @@
+@import url("components/inputs.css");
+@import url("components/fonts.css");
+@import url("components/color.css");
+@import url("components/image.css");
+@import url("components/button.css");
+@import url("components/tooltip.css");
+@import url("components/alert.css");
+@import url("components/card.css");
+@import url("components/scrollbar.css");
+
+body{
+    margin: 0 auto;
+    height: 95vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F9f0ed;
+}
+
+#form_search {
+    width: 350px;
+    border: 1px solid black;
+    flex-direction: row;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+    transition: all 900ms;
+}
+
+#form_search input {
+    width: 60%;
+    border: none;
+}
+
+#form_login {
+    width: 350px;
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    transition: all 900ms;
+}
+
+#form_register {
+    position: absolute;
+
+    width: 350px;
+    border: 1px solid black;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    transition: all 900ms;
+}
+
+#alert_register {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    transition: all 900ms;
+}
+
+#alert_login {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    transition: all 900ms;
+}
+
+#qr_code {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#qr_code #img_found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    margin-top: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#profile_user {
+    width: 100%;
+    height: 95vh;
+    background-color: #F9f0ed;    
+}
+
+#container_navbar {
+    position: fixed;
+    top:0%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 56px;
+    z-index: 10;
+
+    border: none;
+    border-bottom: 1px solid #Ff7a00;
+}
+
+#container_navbar div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#container_orders {
+    position: fixed;
+    top: 58px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    width: 100%;
+    height: 95vh;
+    overflow: scroll;
+    
+}
+
+@media screen and (max-width:740px) {
+
+    #form_login, #form_search, #form_register{
+        border-style: none;
+    }
+    
+}
