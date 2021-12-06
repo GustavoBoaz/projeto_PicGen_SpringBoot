@@ -41,7 +41,7 @@ $(document).ready(function(){
                     cache: 'default'
                 };
 
-            fetch("https://picboaz.herokuapp.com/api/v1/order/"+search, myInit).then(function(response) {
+            fetch("http://localhost:8080/api/v1/order/"+search, myInit).then(function(response) {
                 if(response.status === 200) {
                     response.json().then(data => {
                         $('#img_found').remove();

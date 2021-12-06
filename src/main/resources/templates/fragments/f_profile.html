@@ -1,10 +1,16 @@
 <main th:fragment="main()">
     <div id="container_navbar">
-        <div>
+        <div id="logo_navbar">
             <img class="small-img" src="/img/assets/Logo.png" alt="logo">
             <img class="medium-img" src="/img/assets/PicGen-1-sf.png" alt="logo">   
         </div>
-        <div>
+        <div id="search_navbar">
+            <form id="form_buyer" class="rb-10" style="height: 35px; width: 320px;">
+                <i class="fas fa-search medium tbc"></i>
+                <input id="input_buyer" class="font-light-200 medium tbc" type="text" placeholder="Search buyer by email">
+            </form>
+        </div>
+        <div id="buttons_navbar" style="width: 142px; height: 42px;">
             <a class="btn-is bwc tooltip-bot">
                 <span class="bpc">
                     <h6 class="font-light-200 twc">New</h6>
@@ -15,18 +21,39 @@
                 <span class="bpc">
                     <h6 class="font-light-200 twc">Install</h6>
                 </span>
-                <i class="fas fa-mobile tpo medium"></i>
+                <img class="mini-img rb-10" src="/img/assets/pwa_x192.png" alt="logo">
             </a>
-            <a class="btn-is bwc tooltip-bot">
+            <a id="btn_sign_out" class="btn-is bwc tooltip-bot">
                 <span class="bpc">
                     <h6 class="font-light-200 twc">Exit</h6>
                 </span>
-                <i class="fas fa-door-open tbc small"></i>
+                <i class="fas fa-sign-out-alt medium"></i>
             </a>
         </div>
     </div>
 
     <div id="container_orders" class="scrollbar">
 
+    </div>
+
+    <div id="container_footer">
+        <a class="btn-is bwc tooltip-top">
+            <span class="bpc">
+                <h6 class="font-light-200 twc">New</h6>
+            </span>
+            <i class="fas fa-plus tpo medium"></i>
+        </a>
+        <a id="buttonInstall2" class="btn-is bwc tooltip-top">
+            <span class="bpc">
+                <h6 class="font-light-200 twc">Install</h6>
+            </span>
+            <img class="mini-img rb-10" src="/img/assets/pwa_x192.png" alt="logo">
+        </a>
+        <a id="btn_exit" class="btn-is bwc tooltip-top">
+            <span class="bpc">
+                <h6 class="font-light-200 twc">Exit</h6>
+            </span>
+            <i class="fas fa-sign-out-alt medium"></i>
+        </a>
     </div>
 </main>

@@ -18,12 +18,10 @@
     cursor: pointer;
     transition: 400ms;
 }
-.btn-ti:active {
-    transform: scale(0.9);
-}
 .btn-ti:hover {
     opacity: 70%;
 }
+
 /* Button icon Circle */
 .btn-ic {
     display: flex;
@@ -40,13 +38,11 @@
     cursor: pointer;
     transition: 400ms;
 }
-.btn-ic:active {
-    transform: scale(0.9);
-}
 .btn-ic:hover {
-    border: 2px solid #Ff7a00;
+    border: 1px solid #Ff7a00;
     opacity: 70%;
 }
+
 /* Button icon Square */
 .btn-is {
     display: flex;
@@ -63,13 +59,11 @@
     cursor: pointer;
     transition: 400ms;
 }
-.btn-is:active {
-    transform: scale(0.9);
-}
 .btn-is:hover {
-    border: 2px solid #Ff7a00;
+    border: 1px solid #Ff7a00;
     opacity: 70%;
 }
+
 /* Button icon text */
 .btn-t {
     display: flex;
@@ -89,12 +83,10 @@
     cursor: pointer;
     transition: 400ms;
 }
-.btn-t:active {
-    transform: scale(0.9);
-}
 .btn-t:hover {
     opacity: 70%;
 }
+
 /* Sizes */
 .small {
     padding: 2px;
