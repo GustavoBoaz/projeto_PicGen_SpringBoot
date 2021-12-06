@@ -140,6 +140,7 @@ body{
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
+    padding-bottom: 57px;
 
     width: 100%;
     height: 95vh;
@@ -160,6 +161,7 @@ body{
     width: 100%;
     height: 56px;
     z-index: 10;
+    background-color: #F9f0ed;
 
     border: none;
     border-top: 1px solid #Ff7a00;
