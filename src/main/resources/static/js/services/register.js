@@ -68,27 +68,13 @@ $(document).ready(function(){
                     });
                 } else {
                 response.json().then(data => {
-
-                    if (data.message === "Email já em uso!") {
-                        $('#alert_register').append('<div class="alert bblue tbc">E-mail in use!</div>');
-                    }
-
-                    if (data.message !== "Email já em uso!") {
-                        for (let index = 0; index < data.errors.length; index++) {
-                            if (data.errors[index].field === "name") {
-                                $('#alert_register').append('<div class="alert borange tbc">Name from 3 to 50 characters</div>');
-                            }
-            
-                            if (data.errors[index].field === "email") {
-                                $('#alert_register').append('<div class="alert borange tbc">Send a valid email</div>');
-                            }
-            
-                            if (data.errors[index].field === "password") {
-                                $('#alert_register').append('<div class="alert borange tbc">Password from 3 to 15 characters</div>');
-                            }
-                        }
-                    }
+                    
+                    $('#alert_register').append('<div class="alert borange tbc">Name from 3 to 50 characters</div>');
+                    $('#alert_register').append('<div class="alert borange tbc">Send a valid email</div>');
+                    $('#alert_register').append('<div class="alert borange tbc">Password from 3 to 15 characters</div>');
+                    $('#alert_register').append('<div class="alert bblue tbc">If above is correct try another email!</div>');
                     $('#alert_register').css("display", "flex");
+                    
                 });
                 }
             })

@@ -56,14 +56,7 @@ $(document).ready(function(){
                     });
                 } else {
                     response.json().then(data => {
-                        if (data.message === "Email não existe!") {
-                            $('#alert_login').append('<div class="alert bblue tbc">E-mail not exist!</div>');
-                        }
-                        if (data.message === "Senha incorreta!") {
-                            $('#alert_login').append('<div class="alert bblue tbc">Incorrect password!</div>');
-                        } else {
-                            $('#alert_login').append('<div class="alert bblue tbc">Wrong email format!</div>');
-                        }
+                        $('#alert_login').append('<div class="alert byellow tbc">E-mail or password Invalid</div>');
                         $('#alert_login').css("display", "flex");
                     });
                 }
