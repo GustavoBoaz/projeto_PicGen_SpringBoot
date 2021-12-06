@@ -48,7 +48,7 @@ $(document).ready(function(){
 
         var myInit2 = { method: 'GET', headers: myHeaders2, mode: 'cors', cache: 'default'};
         
-        fetch("http://localhost:8080/api/v1/user/"+sessionToken, myInit2).then(function(response) {
+        fetch("https://picboaz.herokuapp.com/api/v1/user/"+sessionToken, myInit2).then(function(response) {
             if(response.status === 200){
                 response.json().then(data => {
                     for (let index = 0; index < data.myOrders.length; index++) {

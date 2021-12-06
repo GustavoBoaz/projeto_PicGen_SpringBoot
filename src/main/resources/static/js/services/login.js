@@ -38,7 +38,7 @@ $(document).ready(function(){
                     cache: 'default',
                     body: JSON.stringify(loginUser)
                 };
-            fetch("http://localhost:8080/api/v1/user/credentials", myInit).then(function(response) {
+            fetch("https://picboaz.herokuapp.com/api/v1/user/credentials", myInit).then(function(response) {
                 if(response.status === 201) {
                     response.json().then(data => {
 

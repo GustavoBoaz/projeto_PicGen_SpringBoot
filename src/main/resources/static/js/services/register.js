@@ -54,7 +54,7 @@ $(document).ready(function(){
                     body: JSON.stringify(newUser)
                 };
 
-            fetch("http://localhost:8080/api/v1/user/save", myInit).then(function(response) {
+            fetch("https://picboaz.herokuapp.com/api/v1/user/save", myInit).then(function(response) {
                 if(response.status === 201) {
                     response.json().then(data => {
                         $( ".alert" ).remove();
