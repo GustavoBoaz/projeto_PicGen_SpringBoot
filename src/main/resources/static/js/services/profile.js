@@ -1,3 +1,5 @@
+import { DOMAIN } from "../configurations/domain.js";
+
 $(document).ready(function(){
 
     var sessionBasicToken = window.sessionStorage.getItem("basicToken")
@@ -39,7 +41,6 @@ $(document).ready(function(){
         location.reload();
     });
 
-
     if(sessionToken){
 
         var myHeaders2 = new Headers();
@@ -48,13 +49,13 @@ $(document).ready(function(){
 
         var myInit2 = { method: 'GET', headers: myHeaders2, mode: 'cors', cache: 'default'};
         
-        fetch("https://picboaz.herokuapp.com/api/v1/user/"+sessionToken, myInit2).then(function(response) {
+        fetch(DOMAIN.PRO + "/api/v1/user/" + sessionToken, myInit2).then(function(response) {
             if(response.status === 200){
                 response.json().then(data => {
                     for (let index = 0; index < data.myOrders.length; index++) {
                         if (data.myOrders[index].statusPayment === 'PAGO') {
                             $('#container_orders').append(
-                                '<article class="card bwc" style="border: 2px solid rgb(0, 183, 255)">'+
+                                '<div class="card bwc" style="border: 1px solid rgb(0, 183, 255)">'+
                                     '<h4 class="font-light-300">'+
                                         '<b>Status: </b>'+data.myOrders[index].statusPayment+
                                     '</h4>'+
@@ -75,12 +76,15 @@ $(document).ready(function(){
                                     '<h4 class="font-light-300">'+
                                         '<b>Deadline date: </b>'+data.myOrders[index].deadlineDate+
                                     '</h4>'+
-                                '</article>'
+                                    '<div class="pallet">'+
+                                        '<a class="font-light-300"> '+data.myOrders[index].idOrder+' <i class="fas fa-trash tred"></i> </a>'+
+                                    '</div>'+
+                                '</div>'
                             );
                         }
                         if (data.myOrders[index].statusPayment === 'CANCELADO') {
                             $('#container_orders').append(
-                                '<article class="card bwc" style="border: 2px solid red">'+
+                                '<div class="card bwc" style="border: 1px solid red">'+
                                     '<h4 class="font-light-300">'+
                                         '<b>Status: </b>'+data.myOrders[index].statusPayment+
                                     '</h4>'+
@@ -101,12 +105,15 @@ $(document).ready(function(){
                                     '<h4 class="font-light-300">'+
                                         '<b>Deadline date: </b>'+data.myOrders[index].deadlineDate+
                                     '</h4>'+
-                                '</article>'
+                                    '<div class="pallet">'+
+                                        '<a class="font-light-300"> '+data.myOrders[index].idOrder+' <i class="fas fa-trash tred"></i> </a>'+
+                                    '</div>'+
+                                '</div>'
                             );
                         }
                         if (data.myOrders[index].statusPayment === 'PENDENTE') {
                             $('#container_orders').append(
-                                '<article class="card bwc" style="border: 2px solid orange">'+
+                                '<div class="card bwc" style="border: 1px solid orange">'+
                                     '<h4 class="font-light-200">'+
                                         '<b>Status: </b>'+data.myOrders[index].statusPayment+
                                     '</h4>'+
@@ -127,12 +134,29 @@ $(document).ready(function(){
                                     '<h4 class="font-light-300">'+
                                         '<b>Deadline date: </b>'+data.myOrders[index].deadlineDate+
                                     '</h4>'+
-                                '</article>'
+                                    '<div class="pallet">'+
+                                        '<a class="font-light-300"> '+data.myOrders[index].idOrder+' <i class="fas fa-trash tred"></i> </a>'+
+                                    '</div>'+
+                                '</div>'
                             );
                         }
 
                     }
+                    $('.pallet').click(function(){
+                        var idOrder = $(this).children('a').text();
+                        var myInit3 = { method: 'DELETE', headers: myHeaders2, mode: 'cors', cache: 'default'};
 
+                        fetch(DOMAIN.PRO + "/api/v1/order/" + sessionToken + "/" + idOrder, myInit3)
+                            .then(function(response){
+                                if (response.status === 200) {
+                                    location.reload();
+                                } else {
+                                    console.log("Não DELETOU")
+                                }
+                            }).catch(function(error) {
+                                console.log('There has been a problem with your fetch operation: ' + error.message);
+                            });
+                    });
                     console.log(data);
                 });
 

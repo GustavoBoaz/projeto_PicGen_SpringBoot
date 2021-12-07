@@ -1,5 +1,6 @@
 import { UserLoginDTO } from "../models/UserLoginDTO.js";
 import { enviroment } from "../configurations/enviroment.js";
+import { DOMAIN } from "../configurations/domain.js";
 
 $(document).ready(function(){
 
@@ -38,7 +39,7 @@ $(document).ready(function(){
                     cache: 'default',
                     body: JSON.stringify(loginUser)
                 };
-            fetch("https://picboaz.herokuapp.com/api/v1/user/credentials", myInit).then(function(response) {
+            fetch(DOMAIN.PRO + "/api/v1/user/credentials", myInit).then(function(response) {
                 if(response.status === 201) {
                     response.json().then(data => {
 

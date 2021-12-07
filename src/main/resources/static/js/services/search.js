@@ -1,3 +1,5 @@
+import { DOMAIN } from "../configurations/domain.js";
+
 $(document).ready(function(){
 
     $("#input_order").keyup(function () {
@@ -41,7 +43,7 @@ $(document).ready(function(){
                     cache: 'default'
                 };
 
-            fetch("https://picboaz.herokuapp.com/api/v1/order/"+search, myInit).then(function(response) {
+            fetch( DOMAIN.PRO + "/api/v1/order/" + search, myInit).then(function(response) {
                 if(response.status === 200) {
                     response.json().then(data => {
                         $('#img_found').remove();

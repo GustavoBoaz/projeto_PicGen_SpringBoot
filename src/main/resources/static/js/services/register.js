@@ -1,3 +1,4 @@
+import { DOMAIN } from "../configurations/domain.js";
 import { UserResgistrationDTO } from "../models/UserRegistrationDTO.js";
 
 $(document).ready(function(){
@@ -54,7 +55,7 @@ $(document).ready(function(){
                     body: JSON.stringify(newUser)
                 };
 
-            fetch("https://picboaz.herokuapp.com/api/v1/user/save", myInit).then(function(response) {
+            fetch(DOMAIN.PRO + "/api/v1/user/save", myInit).then(function(response) {
                 if(response.status === 201) {
                     response.json().then(data => {
                         $( ".alert" ).remove();
