@@ -1,11 +1,11 @@
-package com.payboaz.App.repositories;
+package com.picgen.App.repositories;
 
 import java.util.List;
 
+import com.picgen.App.models.OrderModel;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import com.payboaz.App.models.OrderModel;
 
 /**
  * Inteface reponseble for inheriting crud methods

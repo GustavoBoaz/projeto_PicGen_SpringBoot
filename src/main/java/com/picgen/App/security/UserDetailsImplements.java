@@ -1,12 +1,12 @@
-package com.payboaz.App.security;
+package com.picgen.App.security;
 
 import java.util.Collection;
 import java.util.List;
 
+import com.picgen.App.models.UserModel;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.payboaz.App.models.UserModel;
 
 public class UserDetailsImplements implements UserDetails {
 

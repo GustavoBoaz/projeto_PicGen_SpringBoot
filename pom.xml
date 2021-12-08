@@ -9,11 +9,11 @@
 		<version>2.5.6</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.payboaz</groupId>
+	<groupId>com.picgen</groupId>
 	<artifactId>App</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>App</name>
-	<description>App payboaz para pagamentos project for Spring Boot</description>
+	<description>App picgen para pagamentos project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

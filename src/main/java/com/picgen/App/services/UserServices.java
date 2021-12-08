@@ -1,9 +1,16 @@
-package com.payboaz.App.services;
+package com.picgen.App.services;
 
 import java.nio.charset.Charset;
 import java.util.Optional;
 
 import javax.validation.Valid;
+
+import com.picgen.App.dtos.UserCredentialsDTO;
+import com.picgen.App.dtos.UserLoginDTO;
+import com.picgen.App.dtos.UserRegistrationDTO;
+import com.picgen.App.dtos.UserUpdateDTO;
+import com.picgen.App.models.UserModel;
+import com.picgen.App.repositories.UserRepository;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +19,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import com.payboaz.App.dtos.UserCredentialsDTO;
-import com.payboaz.App.dtos.UserLoginDTO;
-import com.payboaz.App.dtos.UserRegistrationDTO;
-import com.payboaz.App.dtos.UserUpdateDTO;
-import com.payboaz.App.models.UserModel;
-import com.payboaz.App.repositories.UserRepository;
 
 @Service
 public class UserServices {

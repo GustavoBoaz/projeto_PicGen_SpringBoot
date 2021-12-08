@@ -1,6 +1,6 @@
-package com.payboaz.App.dtos;
+package com.picgen.App.dtos;
 
-import com.payboaz.App.models.OrderModel;
+import com.picgen.App.models.OrderModel;
 
 /**
  * Mirror class for outputting data. Its representation should be used to return

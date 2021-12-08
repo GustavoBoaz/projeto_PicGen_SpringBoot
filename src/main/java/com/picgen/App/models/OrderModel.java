@@ -1,4 +1,4 @@
-package com.payboaz.App.models;
+package com.picgen.App.models;
 
 import java.time.LocalDate;
 
@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.payboaz.App.utils.StatusPayment;
+import com.picgen.App.utils.StatusPayment;
 
 /**
  * Order base abstraction.abstraction.This class is a class that will represent

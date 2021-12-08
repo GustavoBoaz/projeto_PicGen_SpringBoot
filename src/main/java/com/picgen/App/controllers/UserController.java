@@ -1,6 +1,13 @@
-package com.payboaz.App.controllers;
+package com.picgen.App.controllers;
 
 import javax.validation.Valid;
+
+import com.picgen.App.dtos.UserCredentialsDTO;
+import com.picgen.App.dtos.UserLoginDTO;
+import com.picgen.App.dtos.UserRegistrationDTO;
+import com.picgen.App.dtos.UserUpdateDTO;
+import com.picgen.App.models.UserModel;
+import com.picgen.App.services.UserServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,13 +19,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.payboaz.App.dtos.UserCredentialsDTO;
-import com.payboaz.App.dtos.UserLoginDTO;
-import com.payboaz.App.dtos.UserRegistrationDTO;
-import com.payboaz.App.dtos.UserUpdateDTO;
-import com.payboaz.App.models.UserModel;
-import com.payboaz.App.services.UserServices;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

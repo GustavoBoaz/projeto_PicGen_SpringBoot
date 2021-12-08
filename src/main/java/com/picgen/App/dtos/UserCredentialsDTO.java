@@ -1,4 +1,4 @@
-package com.payboaz.App.dtos;
+package com.picgen.App.dtos;
 
 /**
  * Mirror class for outputting data. Your impersonation should be used to return

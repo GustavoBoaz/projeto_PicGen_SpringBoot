@@ -1,6 +1,10 @@
-package com.payboaz.App.controllers;
+package com.picgen.App.controllers;
 
 import javax.validation.Valid;
+
+import com.picgen.App.dtos.OrderPaymentDTO;
+import com.picgen.App.dtos.OrderRegistrationDTO;
+import com.picgen.App.services.OrderServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.payboaz.App.dtos.OrderPaymentDTO;
-import com.payboaz.App.dtos.OrderRegistrationDTO;
-import com.payboaz.App.services.OrderServices;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

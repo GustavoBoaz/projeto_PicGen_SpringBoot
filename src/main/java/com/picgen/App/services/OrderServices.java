@@ -1,20 +1,20 @@
-package com.payboaz.App.services;
+package com.picgen.App.services;
 
 import java.util.Optional;
+
+import com.picgen.App.dtos.OrderPaymentDTO;
+import com.picgen.App.dtos.OrderRegistrationDTO;
+import com.picgen.App.models.OrderModel;
+import com.picgen.App.models.UserModel;
+import com.picgen.App.repositories.OrderRepository;
+import com.picgen.App.repositories.UserRepository;
+import com.picgen.App.utils.QRFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import com.payboaz.App.dtos.OrderRegistrationDTO;
-import com.payboaz.App.dtos.OrderPaymentDTO;
-import com.payboaz.App.models.OrderModel;
-import com.payboaz.App.models.UserModel;
-import com.payboaz.App.repositories.OrderRepository;
-import com.payboaz.App.repositories.UserRepository;
-import com.payboaz.App.utils.QRFactory;
 
 @Service
 public class OrderServices {

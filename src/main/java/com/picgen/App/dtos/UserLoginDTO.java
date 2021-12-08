@@ -1,46 +1,34 @@
-package com.payboaz.App.dtos;
+package com.picgen.App.dtos;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 /**
- * Mirror class for data entry. Your representation must be used to register a
- * new administrator user to the system.
+ * Mirror class for data entry. Your representation must be used to request
+ * credentials from the administrator user;
  * 
  * Fields:
  * 
  * <p>
- * - name: String in between 4 and 50 characteres;
- * </p>
- * <p>
  * - email: String type email;
  * </p>
  * <p>
- * - password: String in between 4 and 100 characteres;
+ * - password: String in between 4 and 15 characteres;
  * </p>
  * 
  * @author JULIA SOBRAL
  * @author BOAZ
  * @since 1.0
  * @see UserCredentialsDTO
- * @see UserLoginDTO
+ * @see UserRegistrationDTO
  * @see UserUpdateDTO
  *
  */
-public class UserRegistrationDTO {
+public class UserLoginDTO {
 
-	private @NotBlank(message = "Inserir 'name' de 4 á 50 caracteres") @Size(min = 3, max = 50) String name;
 	private @NotBlank(message = "Inserir 'email' valido") @Email String email;
 	private @NotBlank(message = "Inserir 'password' de 4 á 15 caracteres") @Size(min = 3, max = 15) String password;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public String getEmail() {
 		return email;

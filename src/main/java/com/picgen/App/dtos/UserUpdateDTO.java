@@ -1,4 +1,4 @@
-package com.payboaz.App.dtos;
+package com.picgen.App.dtos;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

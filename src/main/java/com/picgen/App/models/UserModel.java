@@ -1,4 +1,4 @@
-package com.payboaz.App.models;
+package com.picgen.App.models;
 
 import java.util.ArrayList;
 import java.util.List;

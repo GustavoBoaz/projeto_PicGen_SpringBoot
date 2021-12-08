@@ -1,4 +1,4 @@
-package com.payboaz.App.configuration;
+package com.picgen.App.configuration;
 
 import  org.springframework.context.annotation.Bean;
 import  org.springframework.context.annotation.Configuration;
@@ -17,17 +17,17 @@ public class SwaggerConfiguration {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.payboaz.App.controllers"))
+				.apis(RequestHandlerSelectors.basePackage("com.picgen.App.controllers"))
 				.paths(PathSelectors.any()).build().apiInfo(metadata()).useDefaultResponseMessages(false);
 	}
 	
 	public static ApiInfo metadata() {
 		return new ApiInfoBuilder()
 		.title("API - Pic Boaz")
-		.description("Projeto API Spring - Pic Boaz")
+		.description("Projeto API Spring - Pic Gen")
 		.version("1.0.0")
 		.license("Apache License Version 2.0")
-		.licenseUrl("https://github.com/GustavoBoaz/projeto_picBoaz")
+		.licenseUrl("https://github.com/GustavoBoaz/projeto_picGen")
 		.contact(contact())
 		.build();
 	}
