@@ -9,6 +9,7 @@ import com.picgen.App.models.UserModel;
 import com.picgen.App.repositories.OrderRepository;
 import com.picgen.App.repositories.UserRepository;
 import com.picgen.App.utils.QRFactory;
+import com.picgen.App.utils.StatusPayment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,8 @@ public class OrderServices {
 	private OrderModel newOrder;
 	private OrderModel order;
 	private OrderPaymentDTO objectDTO;
-	private static final String urlPayment = "https://payboaz.herokuapp.com/payboaz/page/payment/";
-	private static final String qrPayment = "https://payboaz.herokuapp.com/payboaz/";
+	private static final String urlPayment = "https://pwapicgen.herokuapp.com/";
+	private static final String qrPayment = "https://pwapicgen.herokuapp.com/pay/";
 
 	
 	/**
@@ -168,6 +169,43 @@ public class OrderServices {
 				repositoryOrder.deleteById(idOrder);
 				
 				return ResponseEntity.status(200).build();
+			} else {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token invalido!");
+			}
+		}).orElseThrow(() -> {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ordem não existe!");
+		});
+	}
+
+		/**
+	 * Public method responsible for making payment by QRCode. The method parses
+	 * the token and idOrder and returns a BAD_REQUEST if invalid. The method
+	 * also checks the payment status, returning a BAD_REQUEST if the order has
+	 * already been paid or canceled. Otherwise, add the value to the
+	 * administrator user's wallet and return status OK.
+	 * 
+	 * @param token
+	 * @param idOrder
+	 * @return ResponseEntity
+	 * @author Boaz
+	 * @since 1.0
+	 * 
+	 */
+	public ResponseEntity<Object> qrCodePayment(String token, Long idOrder){
+		Optional<UserModel> optional = repositoryUser.findByToken(token);
+		return repositoryOrder.findById(idOrder).map(resp -> {
+
+			if (optional.isPresent() && resp.getSponsor().getEmail().equals(optional.get().getEmail()) ) {
+				if(resp.getStatusPayment().equals(StatusPayment.PENDENTE)) {
+					optional.get().setWallet(optional.get().getWallet() + resp.getValue());
+					repositoryUser.save(optional.get());
+					
+					resp.setStatusPayment(StatusPayment.PAGO);
+					repositoryOrder.save(resp);
+					return ResponseEntity.status(200).build();
+				} else {
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ordem ja foi paga ou Cancelada!");
+				}
 			} else {
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token invalido!");
 			}
