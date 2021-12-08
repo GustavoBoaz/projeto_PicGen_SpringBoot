@@ -46,6 +46,25 @@
             <main th:replace="~{fragments/f_profile :: main()}">
         </div>
 
+        <div id="container_new" class="" style="display: none; ">
+            <div id="form_new_order" class="content">
+                <div id="alert_new_order"></div>
+                <input id="input_value" class="font-semi-bold-600 tpc" type="number" placeholder="Value">
+                <input id="input_email_buyer" class="font-semi-bold-600 tpc" type="email" placeholder="E-mail buyer">
+                <input id="input_document" class="font-semi-bold-600 tpc" type="text" placeholder="CPF">
+
+                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: baseline; width: 70%; margin-bottom: 20px;  margin-top: 40px;">
+                    <a id="btn_retunr_two" class="font-light-200 btn-ic bne twc medium tooltip-top" style="width: 20px;">
+                        <span class="bpc">
+                            <h6 class="font-light-200 twc">return</h6>
+                        </span>
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                    <a id="btn_new_order" class="font-light-300 btn-t bpo twc medium disabled" style="width:80%;">Create Order</a>
+                </div>
+            </div>
+        </div>
+
         <div id="qr_code"></div>
 
         <footer th:replace="~{fragments/f_index :: footer()}">
